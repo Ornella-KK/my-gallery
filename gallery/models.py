@@ -8,11 +8,17 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def save_category(self):
+        self.save()
+
 class Location(models.Model):
     place = models.CharField(max_length =30)
 
     def __str__(self):
         return self.place
+
+    def save_location(self):
+        self.save()
 
 class Image(models.Model):
     gallery_image = models.ImageField(upload_to = 'pictures/')
