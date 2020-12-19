@@ -12,7 +12,7 @@ class Location(models.Model):
     def __str__(self):
         return self.place
 
-class Article(models.Model):
+class Image(models.Model):
     gallery_image = models.ImageField(upload_to = 'pictures/')
     title = models.CharField(max_length =60)
     description = models.TextField()
