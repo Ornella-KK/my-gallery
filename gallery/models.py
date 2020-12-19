@@ -32,3 +32,6 @@ class Image(models.Model):
     def search_by_category(cls,search_images):
         gallery = cls.objects.filter(title__icontains=search_images)
         return gallery
+
+    
+    
