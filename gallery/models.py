@@ -1,4 +1,6 @@
 from django.db import models
+import datetime as dt
+
 
 class Category(models.Model):
     title = models.CharField(max_length =30)
@@ -18,3 +20,4 @@ class Image(models.Model):
     description = models.TextField()
     category = models.ForeignKey(Category)
     address = models.ForeignKey(Location)
+    pub_date = models.DateTimeField(auto_now_add=True)
