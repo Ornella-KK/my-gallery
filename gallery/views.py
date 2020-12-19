@@ -2,7 +2,7 @@ from django.http  import HttpResponse
 from django.shortcuts import render,redirect
 import datetime as dt
 from django.http  import HttpResponse,Http404
-from .models import Article
+from .models import *
 
 def search_results(request):
 
@@ -16,3 +16,5 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+
