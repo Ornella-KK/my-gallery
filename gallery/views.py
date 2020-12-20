@@ -11,14 +11,14 @@ def home(request):
 
     if 'location' in request.GET and request.GET['location']:
         place = request.GET.get('location')
-        gallery = Image.view_location(name)
+        gallery = Image.view_location(place)
 
     elif 'category' in request.GET and request.GET['category']:
-        caty = request.GET.get('categories')
+        caty = request.GET.get('category')
         gallery = Image.view_category(caty)
-        return render(request, 'all-images.html', {"name":name,"images":images,"cat":cat })
+        return render(request, 'all-images.html', {"name":name,"images":images,"caty":caty })
 
-    return render(request,"all-images.html",{"images":images,"location":location,"category":category})
+    return render(request,"gallery.html",{"gallery":gallery,"location":location,"category":category})
 
 def search_results(request):
 
@@ -32,5 +32,12 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+def get_image_by_id(request,image_id):
+    try:
+        image = Image.objects.get(id = image_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"index.html", {"image":image})
 
 
