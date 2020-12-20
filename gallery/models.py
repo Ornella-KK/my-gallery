@@ -33,5 +33,13 @@ class Image(models.Model):
         gallery = cls.objects.filter(title__icontains=search_images)
         return gallery
 
-    
+    @classmethod
+    def view_location(cls,place):
+        location = cls.objects.filter(location=place)
+        return location
+
+    @classmethod
+    def view_category(cls,caty):
+        Category = cls.objects.filter(Category=caty)
+        return Category
     
