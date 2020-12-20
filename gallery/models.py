@@ -21,11 +21,11 @@ class Location(models.Model):
         self.save()
 
 class Image(models.Model):
-    gallery_image = models.ImageField(upload_to = 'pictures/')
+    gallery_image = models.ImageField(upload_to = 'pictures/', null = True)
     title = models.CharField(max_length =60)
     description = models.TextField()
-    category = models.ForeignKey(Category)
-    address = models.ForeignKey(Location)
+    category = models.ForeignKey(Category,on_delete = models.CASCADE)
+    address = models.ForeignKey(Location,on_delete = models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     @classmethod
