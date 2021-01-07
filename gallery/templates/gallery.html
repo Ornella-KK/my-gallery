@@ -7,9 +7,10 @@
 <div class="container">
 
   <div class="card-columns">
-    {% for image in gallery %}
+    {% for images in gallery %}
     <div class="card border-secondary">
-      <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" data-target="#extraModal{{image.id}}" data-toggle="modal" size="100px200">
+      <h5 class="modal-title" id="exampleModalLongTitle">{{images.name}}</h5>
+      <img class="card-img-top" class="img-responsive" src="{{images.gallery_image_url|default_if_none:'#'}}" data-target="#extraModal{{image.id}}" data-toggle="modal" size="100px200">
     </div>
     {%endfor%}
   </div>
@@ -17,26 +18,23 @@
 </div>
 
 <!-- Large modal -->
-{% for image in gallery %}
+{% for images in gallery %}
 
 <!-- Modal -->
 <div class="modal fade" id="extraModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="extra" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Title: {{image.name}}</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Title: {{images.name}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
       </div>
 
       <div class="modal-body">
-        <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}" size="100px200">
-        <p>About: {{image.description}}</p>
-        <p>Location: {{image.location}}</p>
-
-        {% for category in image.category.all %}
-        <p> Category: {{ category.title }} </p>
-        {% endfor %}
+        <img class="card-img-top" class="img-responsive" src="{{images.gallery_image_url|default_if_none:'#'}}" size="100px200">
+        <p>About: {{images.description}}</p>
+        <p>Location: {{images.address}}</p>
+        <p> Category: {{ images.category }} </p>
 
         <!-- The button used to copy the text -->
 

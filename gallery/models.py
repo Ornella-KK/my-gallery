@@ -21,16 +21,30 @@ class Location(models.Model):
         self.save()
 
 class Image(models.Model):
-    gallery_image = models.ImageField(upload_to = 'pictures/', null = True)
-    title = models.CharField(max_length =60)
+    gallery_image = models.ImageField(upload_to = 'pictures/', null =True)
+    name = models.CharField(max_length =60)
     description = models.TextField()
     category = models.ForeignKey(Category,on_delete = models.CASCADE)
     address = models.ForeignKey(Location,on_delete = models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    @property
+    def gallery_image_url(self):
+        if self.gallery_image and hasattr(self.gallery_image, 'url'):
+            return self.gallery_image.url
+
     @classmethod
     def search_by_category(cls,search_images):
-        gallery = cls.objects.filter(title__icontains=search_images)
+        gallery = cls.objects.filter(category__title__icontains=search_images)
         return gallery
 
     @classmethod
@@ -40,6 +54,7 @@ class Image(models.Model):
 
     @classmethod
     def view_category(cls,caty):
-        Category = cls.objects.filter(Category=caty)
-        return Category
+        category = cls.objects.filter(category=caty)
+        return category
+    
     
