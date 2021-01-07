@@ -33,6 +33,14 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
 
+def page_category(request,category):
+    gallery = Image.objects.all()
+    location = Location.objects.all()
+    category = Category.objects.all()
+    title = f"{category}"
+    category_results = Image.search_by_category(category)
+    return render(request,'index.html',{'gallery':category_results,'location':location,'category':category, 'title':title})
+
 def get_image_by_id(request,image_id):
     try:
         image = Image.objects.get(id = image_id)

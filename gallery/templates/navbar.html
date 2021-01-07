@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Syne+Tactile&family=Tangerine:wght@700&display=swap" rel="stylesheet">  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse" style = "background-color:lightblue;">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{% url 'home' %}">Orla's Gallery</a>
+        <a style="color: black; font-family: 'Syne Tactile', cursive;font-size: 48px;" class="navbar-brand" class="font-effect-shadow-multiple" href="{% url 'home' %}">La Gallery</a>
         <ul class="nav navbar-nav">
-          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a style="color: black; font-family: 'Tangerine', cursive; font-size: 35px;" href="{% url 'home' %}">Home</a></li>
         </ul>
+        <br>
+        <a style="color: black; font-family: 'Tangerine', cursive; font-size: 25px;" class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"  aria-expanded="false">Categories Available<span class="caret"></span></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% for category in category %}
+          <a class="dropdown-item" style="font-family: 'Josefin Sans', sans-serif; color:black" href="{% url 'home' %}">{{category.title}}</a>
+          <div class="dropdown-divider"></div>
+          {% endfor %}
+        </div>
       </div>
       <!-- Adding a search form  -->
-      <div class="col-sm-4 col-md-4 navbar-right">
+      <div class="col-sm-4 col-md-4 navbar-right" style="font-family: sans-serif;">
 
         <form class="navbar-form" role="search" action="{% url 'search_results' %}">
 
