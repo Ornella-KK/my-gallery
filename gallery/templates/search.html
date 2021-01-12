@@ -15,7 +15,7 @@
       {% for category in category %}
       <div class="card border-secondary">
         <div class="card-header"><h4>{{category.name}}</h4></div>
-        <img class="card-img-top" class="img-responsive" src="{{category.gallery_image_url|default_if_none:'#'}}" size="100px200">
+        <img class="card-img-top" class="img-responsive" style="height: 100px; width: 200px;" src="{{category.gallery_image_url|default_if_none:'#'}}">
       </div>
       {%endfor%}
     </div>
