@@ -31,9 +31,7 @@
       </div>
 
       <div class="modal-body">
-        <div class="image" style="height: 200px; width: 300px;">
-          <img class="card-img-top" class="img-responsive" src="{{images.gallery_image_url|default_if_none:'#'}}">
-        </div>
+        <img class="card-img-top" class="img-responsive" style="height: 200px; width: 300px;" src="{{images.gallery_image_url|default_if_none:'#'}}">
         <p>About: {{images.description}}</p>
         <p>Location: {{images.address}}</p>
         <p> Category: {{ images.category }} </p>
